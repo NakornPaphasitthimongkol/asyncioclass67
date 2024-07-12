@@ -1,22 +1,22 @@
 import asyncio
-import random
+from random import random
 
 async def cook_rice():
-    cook_time = 1 + random.random()  # กำหนดเวลาทำอาหารแบบสุ่มระหว่าง 1 ถึง 2 วินาที
+    cook_time = 1 + random()  # กำหนดเวลาทำอาหารแบบสุ่มระหว่าง 1 ถึง 2 วินาที
     print(f"Microwave (Rice): Cooking {cook_time} seconds...")  # แสดงข้อความบอกเวลาทำอาหาร
     await asyncio.sleep(cook_time)  # หยุดการทำงานตามเวลาที่กำหนดเพื่อจำลองการทำอาหาร
     print("Microwave (Rice): Finished cooking")  # แสดงข้อความบอกว่าเสร็จแล้ว
     return 'Rice', cook_time  # คืนผลลัพธ์เป็นชื่ออาหารและเวลาที่ใช้
 
 async def cook_noodle():
-    cook_time = 1 + random.random()  # กำหนดเวลาทำอาหารแบบสุ่มระหว่าง 1 ถึง 2 วินาที
+    cook_time = 1 + random()  # กำหนดเวลาทำอาหารแบบสุ่มระหว่าง 1 ถึง 2 วินาที
     print(f"Microwave (Noodle): Cooking {cook_time} seconds...")  # แสดงข้อความบอกเวลาทำอาหาร
     await asyncio.sleep(cook_time)  # หยุดการทำงานตามเวลาที่กำหนดเพื่อจำลองการทำอาหาร
     print("Microwave (Noodle): Finished cooking")  # แสดงข้อความบอกว่าเสร็จแล้ว
     return 'Noodle', cook_time  # คืนผลลัพธ์เป็นชื่ออาหารและเวลาที่ใช้
 
 async def cook_curry():
-    cook_time = 1 + random.random()  # กำหนดเวลาทำอาหารแบบสุ่มระหว่าง 1 ถึง 2 วินาที
+    cook_time = 1 + random()  # กำหนดเวลาทำอาหารแบบสุ่มระหว่าง 1 ถึง 2 วินาที
     print(f"Microwave (Curry): Cooking {cook_time} seconds...")  # แสดงข้อความบอกเวลาทำอาหาร
     await asyncio.sleep(cook_time)  # หยุดการทำงานตามเวลาที่กำหนดเพื่อจำลองการทำอาหาร
     print("Microwave (Curry): Finished cooking")  # แสดงข้อความบอกว่าเสร็จแล้ว
