@@ -26,9 +26,15 @@ async def main():
     tasks = [asyncio.create_task(cook_rice()), asyncio.create_task(cook_noodle()), asyncio.create_task(cook_curry())]  # สร้างรายการของงานทำอาหาร
     done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)  # รอให้งานแรกเสร็จสิ้น
 
+    # รวมผลลัพธ์ของงานที่เสร็จแล้ว
+    completed_task = []
     for task in done:
         dish, time = task.result()  # ดึงผลลัพธ์ของงานที่เสร็จสิ้น
-        print(f"Completed task: 1\n - {dish} is completed in {time} seconds")  # แสดงชื่ออาหารและเวลาที่ใช้
+        completed_task.append(f" - {dish} is completed in {time:.6f} seconds")  # เพิ่มผลลัพธ์ลงในรายการ
+
+    print(f"Completed task: {len(done)}")  # แสดงจำนวนงานที่เสร็จสิ้น
+    for result in completed_task:
+        print(result)  # แสดงผลลัพธ์ของแต่ละงานที่เสร็จสิ้น
 
     print(f"Uncompleted tasks: {len(pending)}")  # แสดงจำนวนงานที่ยังไม่เสร็จ
 
