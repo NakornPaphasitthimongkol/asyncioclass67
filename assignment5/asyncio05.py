@@ -1,24 +1,36 @@
 import asyncio
-from random import random
+import random
 
-# coroutine เพื่อทำอาหารแต่ละจาน
-async def cook_dish(dish_name):
-    time_to_cook = 1 + random()
-    await asyncio.sleep(time_to_cook)
-    print(f'{dish_name} is done in {time_to_cook:.2f} seconds')
+async def cook_rice():
+    cook_time = 1 + random.random()  # กำหนดเวลาทำอาหารแบบสุ่มระหว่าง 1 ถึง 2 วินาที
+    print(f"Microwave (Rice): Cooking {cook_time} seconds...")  # แสดงข้อความบอกเวลาทำอาหาร
+    await asyncio.sleep(cook_time)  # หยุดการทำงานตามเวลาที่กำหนดเพื่อจำลองการทำอาหาร
+    print("Microwave (Rice): Finished cooking")  # แสดงข้อความบอกว่าเสร็จแล้ว
+    return 'Rice', cook_time  # คืนผลลัพธ์เป็นชื่ออาหารและเวลาที่ใช้
 
-# coroutine หลัก
+async def cook_noodle():
+    cook_time = 1 + random.random()  # กำหนดเวลาทำอาหารแบบสุ่มระหว่าง 1 ถึง 2 วินาที
+    print(f"Microwave (Noodle): Cooking {cook_time} seconds...")  # แสดงข้อความบอกเวลาทำอาหาร
+    await asyncio.sleep(cook_time)  # หยุดการทำงานตามเวลาที่กำหนดเพื่อจำลองการทำอาหาร
+    print("Microwave (Noodle): Finished cooking")  # แสดงข้อความบอกว่าเสร็จแล้ว
+    return 'Noodle', cook_time  # คืนผลลัพธ์เป็นชื่ออาหารและเวลาที่ใช้
+
+async def cook_curry():
+    cook_time = 1 + random.random()  # กำหนดเวลาทำอาหารแบบสุ่มระหว่าง 1 ถึง 2 วินาที
+    print(f"Microwave (Curry): Cooking {cook_time} seconds...")  # แสดงข้อความบอกเวลาทำอาหาร
+    await asyncio.sleep(cook_time)  # หยุดการทำงานตามเวลาที่กำหนดเพื่อจำลองการทำอาหาร
+    print("Microwave (Curry): Finished cooking")  # แสดงข้อความบอกว่าเสร็จแล้ว
+    return 'Curry', cook_time  # คืนผลลัพธ์เป็นชื่ออาหารและเวลาที่ใช้
+
 async def main():
-    # สร้าง task สำหรับทำอาหารแต่ละจาน
-    dishes = ['rice', 'noodle', 'curry']
-    tasks = [asyncio.create_task(cook_dish(dish)) for dish in dishes]
-    
-    # รอให้ทุก task เสร็จสมบูรณ์
-    done, pending = await asyncio.wait(tasks)
-    
-    # รายงานผลลัพธ์
+    tasks = [asyncio.create_task(cook_rice()), asyncio.create_task(cook_noodle()), asyncio.create_task(cook_curry())]  # สร้างรายการของงานทำอาหาร
+    done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)  # รอให้งานแรกเสร็จสิ้น
+
     for task in done:
-        print(task.result())
+        dish, time = task.result()  # ดึงผลลัพธ์ของงานที่เสร็จสิ้น
+        print(f"Completed task: 1\n - {dish} is completed in {time} seconds")  # แสดงชื่ออาหารและเวลาที่ใช้
+
+    print(f"Uncompleted tasks: {len(pending)}")  # แสดงจำนวนงานที่ยังไม่เสร็จ
 
 # เริ่มโปรแกรม asyncio
 asyncio.run(main())
