@@ -49,8 +49,8 @@ def ToastBread(slices):
         print(f"{time.ctime()} - Toasting bread", slice + 1)
         time.sleep(1)
         print(f"{time.ctime()} - Bread", slice + 1, "toasted")
-    ApplyButter()
-    print(f"{time.ctime()} - Toast", slice + 1, "ready")
+        ApplyButter()
+        print(f"{time.ctime()} - Toast", slice + 1, "ready")
     print(f"{time.ctime()} - >>>>>>> Toast are ready\n")
     return Toast()
 
