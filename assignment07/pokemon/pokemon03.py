@@ -2,8 +2,9 @@ import aiofiles
 import asyncio
 import json
 
+# Correct the directory paths
 pokemonapi_directory = './assignment07/pokemon/pokemonapi'
-pokemonapi_directory = './assignment07/pokemon/pokemonmove'
+pokemonmove_directory = './assignment07/pokemon/pokemonmove'
 
 async def main():
     # Read the contents of the json file.
@@ -19,4 +20,5 @@ async def main():
     async with aiofiles.open(f'{pokemonmove_directory}/{name}_moves.txt', mode='w') as f:
         await f.write('\n'.join(moves))
 
-asyncio.run(main())    
+# Run the main function
+asyncio.run(main())
