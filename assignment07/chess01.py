@@ -1,32 +1,23 @@
 import time
 
-my_compute_time = 0.1
-opponent_compute_time = 0.5
-opponents = 3
-move_pairs = 30
+judit_compute = 0.1
+opponent_compute = 0.5
+opponent = 3
+move_board = 30
 
-def game(x):
-    # Loops 30 times to simulate both players making a move
-    board_start_time = time.perf_counter()
-    for i in range(move_pairs):
-        # print(f"BOARD-{x} {i+1} Judit thinking of making a move.")
-        # We think for 5 seconds
-        time.sleep(my_compute_time)
-        print(f"BOARD-{x+1} {i+1} Judit made a move.")
-        # The opponent thinks for 5 seconds.
-        time.sleep(opponent_compute_time)
-        print(f"BOARD-{x+1} {i+1} Opponent made a move.")
-    print(f"BOARD-{x+1} - >>>>>>>>>>>>>>>>> Finished move in {round(time.perf_counter())} ")
-    return round(time.perf_counter() - board_start_time)
+def main(i):
+    for j in range(move_board):
+        time.sleep(judit_compute)
+        print(f"Judit done {j} moving in board {i}")
+        time.sleep(opponent_compute)
+        print(f"Opponent done {j} moving in board {i}")
+        j += 1
+        
 
-if __name__ == "__main__":
-    start_time = time.perf_counter()
-    # Loops 24 times because we are playing 24 opponents.
-    board_time = 0
-    for board in range(opponents):
-        board_time += game(board)
-
-    print(f"Board exhibition finished in{board_time} secs.")
-    print(f"Finished in {round(time.perf_counter() - start_time)} secs.")
-              
-
+if __name__=="__main__":
+    start_game = time.perf_counter()
+    for i in range(opponent):
+        main(i)
+        i += 1
+    end_game = time.perf_counter() - start_game
+    print(f'{time.ctime()} - All board done in ', end_game, "seconds." )
